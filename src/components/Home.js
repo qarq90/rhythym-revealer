@@ -144,11 +144,47 @@ const StyledTitle = styled(motion.p)`
   margin-bottom: 2rem;
   font-family: "Boogaloo", cursive;
   font-size: 3rem;
-  letter-spacing: 10px;
+  letter-spacing: 15px;
+  animation: opacityB infinite linear 3s;
   font-weight: bolder;
   span {
+    animation: opacityA infinite linear 3s;
     color: #ff4081;
     font-weight: lighter;
+  }
+  @keyframes opacityA {
+    0% {
+      opacity: 1;
+    }
+    25% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0;
+    }
+    75% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes opacityB {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 `;
 
