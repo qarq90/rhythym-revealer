@@ -3,23 +3,18 @@ import axios from "axios";
 import styled from "styled-components";
 import Song from "./Song";
 import "../styles/styles.css";
-import MySVG from "./MySVG";
+import Artist from "./Artist";
+import { motion } from "framer-motion";
+import { scaleUp } from "./Animations";
 const Home = () => {
   const [searchBy, setSearchBy] = useState(false);
   const [show, setShow] = useState(false);
-  const [data, setData] = useState([
-    {
-      artistName: "",
-      artistCover: "",
-      songTitle: "",
-      songCover: "",
-      album: "",
-      songDuration: "",
-    },
-  ]);
+  const [data, setData] = useState([]);
+  const [artist, setArtist] = useState([]);
   const fetchHandler = async () => {
     let inputSong = document.getElementById("typed-song");
-    const options = {
+
+    const optionsTitle = {
       method: "GET",
       url: "https://deezerdevs-deezer.p.rapidapi.com/search",
       params: { q: `${inputSong.value}` },
@@ -29,9 +24,8 @@ const Home = () => {
       },
     };
     try {
-      const response = await axios.request(options);
+      const response = await axios.request(optionsTitle);
       console.log(response.data);
-      const trackDetails = response.data.data[0];
       if (inputSong.value === "") {
         setShow(false);
       } else {
@@ -39,13 +33,40 @@ const Home = () => {
       }
       setData({
         ...data,
-        artistCover: trackDetails.artist.picture_medium,
-        songCover: trackDetails.album.cover_big,
-        artistName: trackDetails.artist.name,
-        songName: trackDetails.title_short,
-        album: trackDetails.album.title,
-        songDuration: trackDetails.duration,
+        artistCover: response.data.data[0].artist.picture_medium,
+        songCover: response.data.data[0].album.cover_big,
+        artistName: response.data.data[0].artist.name,
+        songName: response.data.data[0].title_short,
+        album: response.data.data[0].album.title,
+        songDuration: response.data.data[0].duration,
+        songPrev: response.data.data[0].preview,
       });
+    } catch (error) {
+      console.error(error);
+    }
+
+    const optionsArtist = {
+      method: "GET",
+      url: "https://deezerdevs-deezer.p.rapidapi.com/search",
+      params: { q: `${inputSong.value}` },
+      headers: {
+        "X-RapidAPI-Key": "58c61158b4msh9378a7744c948a6p19cb20jsnf067e4ff84b1",
+        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await axios.request(optionsArtist);
+      console.log(response.data);
+      const top10Artists = response.data.data.slice(0, 25);
+      console.log(top10Artists);
+      if (inputSong.value === "") {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+
+      setArtist(Array.from(top10Artists));
     } catch (error) {
       console.error(error);
     }
@@ -55,41 +76,58 @@ const Home = () => {
     setSearchBy(!searchBy);
     console.log(searchBy);
   };
+  const clearHandler = () => {
+    let inputSong = document.getElementById("typed-song");
+    inputSong.value = "";
+  };
   return (
-    <>
-      <StyledHome>
-        <StyledTitle>Rhythm Revealer</StyledTitle>
-        <StyledTop>
-          <StyledInput
-            id="typed-song"
-            placeholder="Enter music name here..."
-            type="text"
-          />
-          <StyledButtonDiv>
-            <StyledButton
-              className={searchBy ? "disabled" : "enabled"}
-              onClick={filterHandler}
-            >
-              By Artist
-            </StyledButton>
-            <StyledButton
-              className={searchBy ? "enabled" : "disabled"}
-              onClick={filterHandler}
-            >
-              By Title
-            </StyledButton>
-            <StyledButton onClick={fetchHandler}>Search</StyledButton>
-          </StyledButtonDiv>
-        </StyledTop>
-        <StyledBottom>
+    <StyledHome variants={scaleUp} initial="initial" animate="show">
+      <StyledTitle variants={scaleUp}>
+        R<span>h</span>y<span>t</span>h<span>m</span> R<span>e</span>v
+        <span>e</span>a<span>l</span>e<span>r</span>
+      </StyledTitle>
+      <StyledTop variants={scaleUp}>
+        <StyledInput
+          variants={scaleUp}
+          id="typed-song"
+          placeholder="Enter music name here..."
+          type="text"
+        />
+        <StyledButtonDiv>
+          <StyledButton
+            variants={scaleUp}
+            className={searchBy ? "disabled" : "enabled"}
+            onClick={filterHandler}
+          >
+            By Artist
+          </StyledButton>
+          <StyledButton
+            variants={scaleUp}
+            className={searchBy ? "enabled" : "disabled"}
+            onClick={filterHandler}
+          >
+            By Title
+          </StyledButton>
+          <StyledButton variants={scaleUp} onClick={fetchHandler}>
+            Search
+          </StyledButton>
+          <StyledButton variants={scaleUp} onClick={clearHandler}>
+            Clear
+          </StyledButton>
+        </StyledButtonDiv>
+      </StyledTop>
+      <StyledBottom variants={scaleUp}>
+        {searchBy ? (
           <Song data={data} show={show} />
-        </StyledBottom>
-      </StyledHome>
-    </>
+        ) : (
+          <Artist artist={artist} show={show} />
+        )}
+      </StyledBottom>
+    </StyledHome>
   );
 };
 
-const StyledHome = styled.div`
+const StyledHome = styled(motion.div)`
   padding: 3rem 10rem;
   width: 80%;
   height: 100vh;
@@ -99,21 +137,29 @@ const StyledHome = styled.div`
   z-index: 1;
 `;
 
-const StyledTitle = styled.h1`
+const StyledTitle = styled(motion.p)`
   text-align: center;
   margin-bottom: 2rem;
+  font-family: "Boogaloo", cursive;
+  font-size: 3rem;
+  letter-spacing: 10px;
+  font-weight: bolder;
+  span {
+    color: #ff4081;
+    font-weight: lighter;
+  }
 `;
 
-const StyledBottom = styled.h1`
+const StyledBottom = styled(motion.h1)`
   display: flex;
 `;
 
-const StyledButtonDiv = styled.h1`
+const StyledButtonDiv = styled(motion.h1)`
   display: flex;
   justify-content: center;
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled(motion.input)`
   width: 40%;
   height: 1.5rem;
   padding: 0.5rem;
@@ -130,13 +176,13 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledTop = styled.div`
+const StyledTop = styled(motion.div)`
   display: flex;
   flex-direction: column;
   margin: 0px auto 4rem;
 `;
 
-const StyledButton = styled.div`
+const StyledButton = styled(motion.div)`
   width: 8.6%;
   margin: 0.2rem;
   border: 3px solid #ff4081;
@@ -149,15 +195,32 @@ const StyledButton = styled.div`
   text-align: center;
   font-family: "Nunito", sans-serif;
   &:hover {
-    width: 20%;
-    letter-spacing: 10px;
+    animation: flash infinite linear 2s;
   }
   &.enabled {
     background-color: #ff4081;
+    animation: flash infinite linear 2s;
   }
 
   &.disabled {
-    background-color: #1a1a1a;
+    background-color: #ff4081;
+  }
+  @keyframes flash {
+    0% {
+      background-color: #1a1a1a;
+    }
+    25% {
+      background-color: #ff4081;
+    }
+    50% {
+      background-color: #1a1a1a;
+    }
+    75% {
+      background-color: #ff4081;
+    }
+    100% {
+      background-color: #1a1a1a;
+    }
   }
 `;
 
