@@ -6,6 +6,7 @@ import "../styles/styles.css";
 import Artist from "./Artist";
 import { motion } from "framer-motion";
 import { scaleUp } from "./Animations";
+
 const Home = () => {
   const [searchBy, setSearchBy] = useState(false);
   const [show, setShow] = useState(false);
@@ -19,8 +20,8 @@ const Home = () => {
       url: "https://deezerdevs-deezer.p.rapidapi.com/search",
       params: { q: `${inputSong.value}` },
       headers: {
-        "X-RapidAPI-Key": "58c61158b4msh9378a7744c948a6p19cb20jsnf067e4ff84b1",
-        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+        "X-RapidAPI-Key": process.env.REACT_APP_API_KEY,
+        "X-RapidAPI-Host": process.env.REACT_APP_API_URL,
       },
     };
     try {
@@ -50,8 +51,8 @@ const Home = () => {
       url: "https://deezerdevs-deezer.p.rapidapi.com/search",
       params: { q: `${inputSong.value}` },
       headers: {
-        "X-RapidAPI-Key": "58c61158b4msh9378a7744c948a6p19cb20jsnf067e4ff84b1",
-        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+        "X-RapidAPI-Key": process.env.REACT_APP_API_KEY,
+        "X-RapidAPI-Host": process.env.REACT_APP_API_URL,
       },
     };
 
@@ -69,6 +70,7 @@ const Home = () => {
       setArtist(Array.from(top10Artists));
     } catch (error) {
       console.error(error);
+      console.log(process.env.REACT_APP_API_KEY);
     }
   };
 
