@@ -6,10 +6,19 @@
 }
 
 .myBackground {
+  background-image: url('../img/blobBG.svg');
   width: 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  body{
+    background-image: url('../img/blobBG.svg');
+    background-size: 100vw auto;
+    background-repeat: repeat;
+  }
 }
 
 .morph-animation {

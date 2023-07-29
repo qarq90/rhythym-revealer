@@ -18,52 +18,53 @@ const Song = ({ data, show }) => {
       animate="show"
       className={`${show ? "text-show" : "text-hide"}`}
     >
-      <StyledSongDiv variants={scaleUp}>
-        <StyledCover variants={scaleUp} src={data.songCover} alt="" />
-      </StyledSongDiv>
-      <StyledSongDiv variants={scaleUp}>
-        <StyledTitle
-          variants={scaleUp}
-          className={`${show ? "text-show" : "text-hide"}`}
-        >
-          Latest Title : {data.songName}
-        </StyledTitle>
-        <StyledInfo
-          variants={scaleUp}
-          className={`${show ? "text-show" : "text-hide"}`}
-        >
-          Album : {data.album}
-        </StyledInfo>
-        <StyledInfo
-          variants={scaleUp}
-          className={`${show ? "text-show" : "text-hide"}`}
-        >
-          Artist : {data.artistName}
-        </StyledInfo>
-        <StyledInfo
-          variants={scaleUp}
-          className={`${show ? "text-show" : "text-hide"}`}
-        >
-          Duration - {songLength}:{remainingSeconds}
-        </StyledInfo>
-        <StyledSongBtn
-          variants={scaleUp}
-          onClick={prevHandler}
-          className={`${show ? "text-show" : "text-hide"}`}
-          id="playButton"
-        >
-          Download Preview
-        </StyledSongBtn>
-      </StyledSongDiv>
-      <StyledSongDiv variants={scaleUp}>
-        <StyledArtistCover variants={scaleUp} src={data.artistCover} alt="" />
-      </StyledSongDiv>
+      <StyledSongOuter>
+        <StyledSongDiv variants={scaleUp}>
+          <StyledCover variants={scaleUp} src={data.songCover} alt="" />
+        </StyledSongDiv>
+        <StyledSongDiv variants={scaleUp}>
+          <StyledTitle
+            variants={scaleUp}
+            className={`${show ? "text-show" : "text-hide"}`}
+          >
+            Latest Title : {data.songName}
+          </StyledTitle>
+          <StyledInfo
+            variants={scaleUp}
+            className={`${show ? "text-show" : "text-hide"}`}
+          >
+            Album : {data.album}
+          </StyledInfo>
+          <StyledInfo
+            variants={scaleUp}
+            className={`${show ? "text-show" : "text-hide"}`}
+          >
+            Artist : {data.artistName}
+          </StyledInfo>
+          <StyledInfo
+            variants={scaleUp}
+            className={`${show ? "text-show" : "text-hide"}`}
+          >
+            Duration - {songLength}:{remainingSeconds}
+          </StyledInfo>
+          <StyledSongBtn
+            variants={scaleUp}
+            onClick={prevHandler}
+            className={`${show ? "text-show" : "text-hide"}`}
+            id="playButton"
+          >
+            Download Preview
+          </StyledSongBtn>
+        </StyledSongDiv>
+        <StyledSongDiv variants={scaleUp}>
+          <StyledArtistCover variants={scaleUp} src={data.artistCover} alt="" />
+        </StyledSongDiv>
+      </StyledSongOuter>
     </StyledSong>
   );
 };
 
 const StyledSong = styled(motion.div)`
-  display: flex;
   font-family: "Nunito", sans-serif;
   &.text-show {
     display: contents;
@@ -73,9 +74,23 @@ const StyledSong = styled(motion.div)`
   }
 `;
 
+const StyledSongOuter = styled(motion.div)`
+  display: flex;
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    width: 90%;
+  }`;
+
 const StyledSongDiv = styled(motion.div)`
   width: 33%;
   text-align: center;
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    //display: flex;
+    //flex-direction: column;
+    width: 90%;
+  }
 `;
 
 const StyledSongBtn = styled(motion.button)`
@@ -98,6 +113,10 @@ const StyledSongBtn = styled(motion.button)`
     color: #1a1a1a;
     font-weight: bolder;
   }
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    font-size: 1rem;
+    width: 90%;
+  }
 `;
 
 const StyledTitle = styled(motion.h1)`
@@ -119,6 +138,9 @@ const StyledCover = styled(motion.img)`
 const StyledArtistCover = styled(motion.img)`
   width: 75%;
   border-radius: 100%;
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    margin-top: 3rem;
+  }
 `;
 
 export default Song;

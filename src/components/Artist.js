@@ -94,12 +94,19 @@ const StyledArtist = styled(motion.div)`
   &.text-hide {
     display: none;
   }
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    margin-left: 1rem;
+  }
 `;
 
 const StyledMapDiv = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    flex-direction: column;
+    width: 90%;
+  }
 `;
 
 const StyledBorder = styled(motion.div)`
@@ -113,6 +120,9 @@ const StyledBorder = styled(motion.div)`
 const StyledArtistDiv = styled(motion.div)`
   width: 33%;
   text-align: center;
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    width: 90%;
+  }
 `;
 
 const StyledSongBtn = styled(motion.button)`
@@ -135,6 +145,10 @@ const StyledSongBtn = styled(motion.button)`
     color: #1a1a1a;
     font-weight: bolder;
   }
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    font-size: 1rem;
+    width: 90%;
+  }
 `;
 
 const StyledTitle = styled(motion.h1)`
@@ -155,5 +169,8 @@ const StyledCover = styled(motion.img)`
 const StyledArtistCover = styled(motion.img)`
   width: 75%;
   border-radius: 100%;
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    margin-top: 3rem;
+  }
 `;
 export default Artist;

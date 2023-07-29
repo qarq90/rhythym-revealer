@@ -92,7 +92,7 @@ const Home = () => {
         <StyledInput
           variants={scaleUp}
           id="typed-song"
-          placeholder="Enter music name here..."
+          placeholder="Type here..."
           type="text"
         />
         <StyledButtonDiv>
@@ -137,6 +137,9 @@ const StyledHome = styled(motion.div)`
   top: 0;
   left: 0;
   z-index: 1;
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    margin-left: -7rem;
+  }
 `;
 
 const StyledTitle = styled(motion.p)`
@@ -186,6 +189,12 @@ const StyledTitle = styled(motion.p)`
       opacity: 0;
     }
   }
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    color: #1a1a1a;
+    span{
+      color: ghostwhite;
+    }
+  }
 `;
 
 const StyledBottom = styled(motion.h1)`
@@ -195,6 +204,9 @@ const StyledBottom = styled(motion.h1)`
 const StyledButtonDiv = styled(motion.h1)`
   display: flex;
   justify-content: center;
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    flex-direction: column;
+  }
 `;
 
 const StyledInput = styled(motion.input)`
@@ -211,6 +223,9 @@ const StyledInput = styled(motion.input)`
   font-family: "Nunito", sans-serif;
   &:focus {
     outline: none;
+  }
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    width: 90%;
   }
 `;
 
@@ -239,7 +254,6 @@ const StyledButton = styled(motion.div)`
     background-color: #ff4081;
     animation: flash infinite linear 2s;
   }
-
   &.disabled {
     background-color: #ff4081;
   }
@@ -259,6 +273,9 @@ const StyledButton = styled(motion.div)`
     100% {
       background-color: #1a1a1a;
     }
+  }
+  @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    width: 90%;
   }
 `;
 
