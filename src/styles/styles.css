@@ -5,11 +5,11 @@
   overflow-x: hidden;
 }
 
-.myBackground {
-  background-image: url('../img/blobBG.svg');
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
+body{
+  background: url("../img/blobBG.svg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 
