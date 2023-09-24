@@ -76,10 +76,13 @@ const StyledSong = styled(motion.div)`
 
 const StyledSongOuter = styled(motion.div)`
   display: flex;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
     display: flex;
     flex-direction: column;
-    margin-left: 2rem;
+    justify-content: center;
     width: 90%;
   }`;
 
@@ -87,8 +90,6 @@ const StyledSongDiv = styled(motion.div)`
   width: 33%;
   text-align: center;
   @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    //display: flex;
-    //flex-direction: column;
     width: 90%;
   }
 `;
@@ -115,7 +116,7 @@ const StyledSongBtn = styled(motion.button)`
   }
   @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
     font-size: 1rem;
-    width: 90%;
+    width: 100%;
   }
 `;
 

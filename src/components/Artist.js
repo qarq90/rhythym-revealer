@@ -85,7 +85,9 @@ const Artist = ({ artist, show }) => {
 };
 
 const StyledArtist = styled(motion.div)`
-  width: 100%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
   font-family: "Nunito", sans-serif;
   &.text-show {
@@ -95,11 +97,14 @@ const StyledArtist = styled(motion.div)`
     display: none;
   }
   @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
 const StyledMapDiv = styled(motion.div)`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,7 +152,7 @@ const StyledSongBtn = styled(motion.button)`
   }
   @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
     font-size: 1rem;
-    width: 90%;
+    width: 100%;
   }
 `;
 

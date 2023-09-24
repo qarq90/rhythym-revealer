@@ -132,14 +132,16 @@ const Home = () => {
 
 const StyledHome = styled(motion.div)`
   padding: 3rem 10rem;
-  width: 80%;
+  width: 100%;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
+  margin-left: -8%;
   @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    margin-left: -8rem;
+    margin-left: -32%;
+    width: 82%;
   }
 `;
 
@@ -193,7 +195,7 @@ const StyledTitle = styled(motion.p)`
     }
   }
   @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    color: #1a1a1a;
+    color: hotpink;
     span {
       color: ghostwhite;
     }
@@ -231,6 +233,7 @@ const StyledInput = styled(motion.input)`
 
   @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
     width: 90%;
+    margin-left: 0;
   }
 `;
 
