@@ -6,7 +6,6 @@ import "../styles/styles.css";
 import Artist from "./Artist";
 import {motion} from "framer-motion";
 import {scaleUp} from "./Animations";
-// require('dotenv').config()
 const Home = () => {
     const apiKey = process.env.REACT_APP_API_KEY;
     const apiUrl = process.env.REACT_APP_API_URL;
