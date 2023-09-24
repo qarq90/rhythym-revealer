@@ -27,7 +27,7 @@ const Song = ({ data, show }) => {
             variants={scaleUp}
             className={`${show ? "text-show" : "text-hide"}`}
           >
-            Latest Title : {data.songName}
+            Top Song  : {data.songName}
           </StyledTitle>
           <StyledInfo
             variants={scaleUp}

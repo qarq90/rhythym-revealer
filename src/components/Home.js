@@ -139,7 +139,7 @@ const StyledHome = styled(motion.div)`
   left: 0;
   z-index: 1;
   @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
-    margin-left: -7rem;
+    margin-left: -8rem;
   }
 `;
 

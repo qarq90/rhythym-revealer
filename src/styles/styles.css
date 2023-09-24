@@ -15,7 +15,7 @@ body{
 
 @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
   body{
-    background-image: url('../img/blobBG.svg');
+    background-image: url('../img/BG_mobile.png');
     background-size: 100vw auto;
     background-repeat: repeat;
   }
